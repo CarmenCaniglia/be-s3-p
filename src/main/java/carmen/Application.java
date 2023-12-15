@@ -36,6 +36,8 @@ public class Application {
 
         Loan loan = new Loan(mario, harry, LocalDate.now());
         LoanDAO.save(loan);
+        Loan expiredLoan = new Loan(luigi, lotr, LocalDate.now().minusDays(30));
+        expiredLoan.setEndDate(LocalDate.now().minusDays(15));
 
         LibraryItem foundItem = LibraryItemDAO.findByIsbn("937565");
         System.out.println("Item found for ISBN: " + foundItem);
