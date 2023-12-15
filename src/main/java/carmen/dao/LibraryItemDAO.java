@@ -57,7 +57,7 @@ public class LibraryItemDAO {
     }
 
     public static List<Book> findByAuthor(String author){
-        TypedQuery<Book> getByAuthor = em.createQuery("SELECT b FROM Book WHERE b.author = :author", Book.class);
+        TypedQuery<Book> getByAuthor = em.createQuery("SELECT b FROM Book b WHERE b.author = :author", Book.class);
         getByAuthor.setParameter("author", author);
         return getByAuthor.getResultList();
     }
