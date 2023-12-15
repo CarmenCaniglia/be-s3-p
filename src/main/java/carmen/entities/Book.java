@@ -1,11 +1,13 @@
 package carmen.entities;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "books")
+@DiscriminatorValue("Book")
 public class Book extends LibraryItem{
     @Column(name = "author")
     private String author;
@@ -13,7 +15,9 @@ public class Book extends LibraryItem{
     private String genre;
 
 
-    public Book(){}
+    public Book(){
+        super();
+    }
 
     public Book(String isbn, String title, int year, int pages, String author, String genre) {
         super(isbn, title, year, pages);
