@@ -1,14 +1,13 @@
 package carmen.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "library_items")
+@Inheritance(strategy = InheritanceType.JOINED)
 
-public abstract class LibraryItem {
+public abstract class LibraryItem { //preferisco inizializzarla come astratta per l'uso della strategia JOINED
     @Id
     private String isbn;
     @Column(name = "title")
@@ -17,6 +16,9 @@ public abstract class LibraryItem {
     private int year;
     @Column(name = "pages")
     private int pages;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE)
+    private List<Loan> loans;
 
     public LibraryItem(){}
 

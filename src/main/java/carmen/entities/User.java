@@ -2,10 +2,13 @@ package carmen.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE) //uso OneToMany perchè l'utente può avere più prestiti
+    List<Loan> loans;
     @Id
     @GeneratedValue
     @Column(name = "card_number")

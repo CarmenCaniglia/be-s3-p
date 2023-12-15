@@ -10,7 +10,13 @@ public class Loan {
     @Id
     @GeneratedValue
     private long id;
+
+    @ManyToOne //uso questa perchè secondo me tanti prestiti possono essere associati ad una singola persona
+    @JoinColumn(name = "user_id" )
     private User user;
+
+    @ManyToOne//come sopra, molti prestiti possono essere associati ad uno stesso libro/rivista
+    @JoinColumn(name = "item_id")
     private LibraryItem item;
     @Column(name = "start_date")
     private LocalDate startDate; //data consegna prevista
@@ -23,6 +29,7 @@ public class Loan {
         this.user = user;
         this.item = item;
         this.startDate = startDate;
+        this.endDate= startDate.plusDays(30);
     }
 
     public long getId() {
