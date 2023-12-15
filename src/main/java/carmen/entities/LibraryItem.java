@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "library_items")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)//dovuta inserire perchè mi dava errore nella costruzione degli elementi (passava un parametro null)
+@DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)//dovuta inserire per evitare errore nella costruzione degli elementi (colonna DTYPE)
 
 public abstract class LibraryItem { //preferisco inizializzarla come astratta per l'uso della strategia JOINED
     @Id

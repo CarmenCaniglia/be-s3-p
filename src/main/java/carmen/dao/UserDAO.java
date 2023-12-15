@@ -1,9 +1,12 @@
 package carmen.dao;
 
+import carmen.entities.Loan;
 import carmen.entities.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class UserDAO {
     private EntityManager em;
@@ -30,5 +33,11 @@ public class UserDAO {
         em.remove(user);
         transaction.commit();
         System.out.println("User " + user.getName() + " deleted");
+    }
+
+    public List<Loan> searchByCard(int cardNumber){
+        TypedQuery<Loan> getItem = em.createQuery("SELECT l FROM Loan l WHERE l.user.cardNumber = :cardNumber", Loan.class);
+        getItem.setParameter("cardNumber",cardNumber);
+        return getItem.getResultList();
     }
 }
